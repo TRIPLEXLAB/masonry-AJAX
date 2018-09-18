@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+/*
+ * Slideshow
+ */
+ .slideshow{
+   background-color:rgb(0,0,0); /* 배경색상 */
+   overflow:hidden;  /* 영역설정부분외의 부분은 안보이는것 */
+   position:relative; /* 특정한 슬라이드 기준->나열 */
+    min-width:960px; /* 1600에서 최소 960px */
+   height:465px;
+ }
+ 
+ .slideshow-slides{
+   height:100%;
+   position:absolute; /* 4장 이미지가 겹쳐있는 상태 */
+   width:100%; /* left는 JavaScript로 지정(main.js)  */
+ }
+ 
+ .slideshow-slides .slide {   /* 이미지를 담고 있는 a링크 */
+   height:100%;
+   overflow:hidden; /*영역을 벗어난 부분은 안보이게 */
+   position:absolute;
+   width:100%;
+ }
+ 
+.slideshow-slides .slide img{ 
+   position:absolute;
+   left:50%; /*슬라이드의 정중앙에 배치 */
+   margin-left:-800px;
+ }
+
+.slideshow-nav a, .slideshow-indicator a{ /* main.js에서 <a href=~ */
+    background-color:rgba(0,0,0,0); /* for IE9 */
+    overflow:hidden; /* 슬라이드 이동시 화면에 안보이게 설정 */
+ }
+ 
+ .slideshow-nav a:before,   /* 클릭 전 */
+ .slideshow-indicator a:before {  /* 인디케이터 누르기전 */
+    content:url(../img/sprites.png);
+    display:inline-block; /* <,> 나란히 정렬 */
+    font-size:0;
+    line-height:0;
+ }
+ 
+ .slideshow-nav a { /* 링크문자열의 위치와 크기 지정 */
+   position:absolute; /* 링크문자열도 겹치게 설정 */
+   top:50%;
+   left:50%;
+   width:72px;
+   height:72px;
+   margin-top:-36px;
+ }
+ 
+.slideshow-nav a.prev{ /* < 누른후 이동한 위치 */
+	margin-left:-480px;
+}
+.slideshow-nav a.prev::before { /* < 누르기 전의 이동 위치 */
+	margin-top:-20px;
+}
+
+.slideshow-nav a.next{ /* > 누른후 이동한 위치 */
+	margin-left:408px;
+}
+.slideshow-nav a.next::before { /* > 누르기 전의 이동 위치 */
+    margin-left:-80px;
+	margin-top:-20px;
+}
+
+.slideshow-nav a.disabled{ /* a 비활성화->화면에 안보이게 설정*/
+	display:none;
+}
+
+.slideshow-indicator {
+	bottom: 30px;
+	height: 16px;
+	left: 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+}
+.slideshow-indicator a {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin: 0 4px;
+	background-color: aliceblue;
+	border-radius: 100%;
+}
+
+.slideshow-indicator a.active { 
+	cursor: default;
+}
+
+.slideshow-indicator a::before {
+	margin-left: -110px;
+}
+
+.slideshow-indicator a.active::before {
+	margin-left: -130px;
+}
+
+/* 자바스크립트 비활성화되어있으면 첫번째 슬라이드만 출력이 되게 설정 */
+/*
+.no-js .slideshow img:frist-child{
+	display:inline;
+} */
+
+.no-js .slideshow {
+    height: auto;
+}
+.no-js .slideshow-slides {
+    height: auto;
+    position: static;
+}
+.no-js .slideshow-slides .slide {
+    display: block;
+    height: auto;
+    position: static;
+}
+.no-js .slideshow-slides .slide img {
+    margin: auto;
+    position: static;
+}
+.no-js .slideshow-nav,
+.no-js .slideshow-indicator {
+    display: none;
+}
+
+

@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+/*
+ * Slideshow
+ */
+ 
+ .slideshow {
+	 overflow: hidden;
+	 position: relative;
+	 min-width: 960px;
+	 height: 465px;
+ }
+
+.slideshow img {
+	display: none;
+	width: 1600px;
+	height: 465px;
+	position: absolute;
+	left: 50%;
+	margin-left: -800px; 
+}
+
+
+
+/* 자바스크립트 비활성화되어있으면 첫번째 슬라이드만 출력이 되게 설정 */
+.no-js .slideshow img:frist-child{
+	display:inline;
+}
+
+
+
